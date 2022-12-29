@@ -44,6 +44,7 @@ Then add this into your code:
 <x-card
   tokenAddress="0x5caebd3b32e210e85ce3e9d51638b9c445481567"
   tokenId="1"
+  baseIncomeStreamAddress="0x3534955239dCebb283E23D8f02fe05B4cd5785e2"
   network="mainnet"
   >
 </x-card>

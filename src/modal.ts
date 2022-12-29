@@ -62,7 +62,7 @@ export class Modal extends LitElement {
         display: inline-block;
         margin-top: 10px;
         cursor: pointer;
-        loat: right;
+        float: right;
       }
       .asset-modal-dark .asset-modal-dialog {
         background-color: #1f1f1f;

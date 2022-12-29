@@ -14,6 +14,8 @@
     "type": "git",
     "url": "https://github.com/madtechnologistproton/x-nfts.git"
   },
+  "author": "madtechnologistproton",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/madtechnologistproton/x-nfts/issues"
   },

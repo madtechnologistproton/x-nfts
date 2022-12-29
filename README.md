@@ -35,18 +35,18 @@ mode on mobile (breakpoint is at 600px). In `manual` mode the card will be unaff
 Add this to your `<head>` tag:
 
 ```
-<script src="https://unpkg.com/x-nfts/dist/nft-card.min.js"></script>
+<script src="https://unpkg.com/x-nfts/dist/x-card.min.js"></script>
 ```
 
 Then add this into your code:
 
 ```
-<nft-card
+<x-card
   tokenAddress="0x5caebd3b32e210e85ce3e9d51638b9c445481567"
   tokenId="1"
   network="mainnet"
   >
-</nft-card>
+</x-card>
 ```
 
 ### Development

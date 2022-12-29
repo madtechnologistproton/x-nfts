@@ -4,7 +4,7 @@ import { provider as Web3Provider } from 'web3-core'
 
 /* lit-element classes */
 import './loader.ts'
-import './nft-card-front.ts'
+import './x-card-front.ts'
 import './modal.ts'
 
 import { AssetNFT, ButtonEvent, Network, ThemeMode } from './types'
@@ -30,12 +30,12 @@ enum OrientationMode {
 const MOBILE_BREAK_POINT = 600
 
 /**
- * Nft-card element that manage Nft card.
+ * x-card element that manage Nft card.
  * Facilitates acquisition and distribution data between
  * components.
- * Registers <nft-card> as an HTML tag.
+ * Registers <x-card> as an HTML tag.
  */
-@customElement('nft-card')
+@customElement('x-card')
 export class NftCard extends LitElement {
   /* User configurable properties */
   @property({ type: Boolean }) public horizontal?: boolean
@@ -195,7 +195,7 @@ export class NftCard extends LitElement {
 
   public renderInnerCardTemplate() {
     return html`
-      <nft-card-front
+      <x-card-front
         .horizontal=${this.horizontal}
         @button-event="${this.eventHandler}"
         .asset=${this.asset}
@@ -204,7 +204,7 @@ export class NftCard extends LitElement {
           network: this.network,
         }}
         .flippedCard="${this.flippedCard}"
-      ></nft-card-front>
+      ></x-card-front>
     `
   }
 

@@ -6,7 +6,7 @@ import { styleMap } from 'lit-html/directives/style-map'
 import { AssetNFT, State, ThemeMode } from './types'
 const noImage =
   'https://raw.githubusercontent.com/madtechnologistproton/x-nfts/de818da1b88db9dafeefb682909222a013cc2158/src/images/no-image.svg'
-@customElement('nft-card-front')
+@customElement('x-card-front')
 export class NftCardFrontTemplate extends LitElement {
   @property({ type: Object }) public asset: AssetNFT | null = null
   @property({ type: String }) public mode: string = ThemeMode.Light

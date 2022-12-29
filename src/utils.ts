@@ -26,6 +26,7 @@ export const getProvider = (network?: string) => {
       return new Web3.providers.HttpProvider('https://arb1.arbitrum.io/rpc')
     case 'mainnet':
     case 'main':
+    case 'ethereum':
     default:
       return new Web3.providers.HttpProvider(
         ' https://mainnet.infura.io/v3/40e634698c4842ba9ffb4f64101177ca'

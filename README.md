@@ -16,6 +16,8 @@ Demo : https://madtechnologistproton.github.io/x-nfts/example/
 
 `tokenId`\* - The token Id of the asset.
 
+`infuraId`\* - Your Infura Id. Require in network `ethereum`, `goerli`
+
 `horizontal` - If this is present, the card will be rendered horizontally.
 mode on mobile (breakpoint is at 600px). In `manual` mode the card will be unaffected.
 
@@ -25,7 +27,7 @@ mode on mobile (breakpoint is at 600px). In `manual` mode the card will be unaff
 
 `height` - The height of the embeddable. Ex. values `40vh` `300px`. Default: `560px`
 
-`network` - The name of the network the asset is on `mainnet` or `polygon`. Default: `mainnet`.
+`network` - The name of the network the asset is on `ethereum` or `polygon`. Default: `ethereum`.
 
 `mode` - Theme mode [`light`,`dark`]. Default: `light`
 
@@ -47,6 +49,7 @@ Then add this into your code:
   tokenAddress="0x5caebd3b32e210e85ce3e9d51638b9c445481567"
   tokenId="1"
   baseIncomeStreamAddress="0x3534955239dCebb283E23D8f02fe05B4cd5785e2"
+  infuraId="YOUR_INFURA_ID"
   network="mainnet"
   >
 </x-card>

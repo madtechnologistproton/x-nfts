@@ -50,6 +50,7 @@ export class NftCard extends LitElement {
   @property({ type: String }) public minHeight: string = ''
   @property({ type: String }) public maxWidth: string = ''
   @property({ type: String }) public network: Network = Network.Mainnet
+  @property({ type: String }) public infuraId: string= ""
   @property({ type: String }) public mode: string = ThemeMode.Light
   @property({ type: String }) public referrerAddress: string = ''
 
@@ -159,7 +160,7 @@ export class NftCard extends LitElement {
       : VERT_MIN_CARD_HEIGHT
     this.maxWidth = this.horizontal ? HORIZONTAL_CARD_MAX_WIDTH : ''
 
-    this.provider = getProvider(this.network)
+    this.provider = getProvider(this.network,this.infuraId)
 
     try {
       this.asset = await getNFTContract(

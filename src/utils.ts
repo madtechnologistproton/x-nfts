@@ -10,13 +10,13 @@ import { Network, AssetNFT } from './types'
 export const toBaseDenomination = (value: number, decimals: number) =>
   +value.toFixed() / Math.pow(10, decimals)
 
-export const getProvider = (network?: string) => {
+export const getProvider = (network?: string, infuraId?: string) => {
   switch (network) {
     case 'goerli':
     case 'testnet':
     case 'testnets':
       return new Web3.providers.HttpProvider(
-        'https://goerli.infura.io/v3/40e634698c4842ba9ffb4f64101177ca'
+        `https://goerli.infura.io/v3/${infuraId}`
       )
     case 'polygon':
       return new Web3.providers.HttpProvider('https://polygon-rpc.com')
@@ -29,7 +29,7 @@ export const getProvider = (network?: string) => {
     case 'ethereum':
     default:
       return new Web3.providers.HttpProvider(
-        ' https://mainnet.infura.io/v3/40e634698c4842ba9ffb4f64101177ca'
+        `https://mainnet.infura.io/v3/${infuraId}`
       )
   }
 }

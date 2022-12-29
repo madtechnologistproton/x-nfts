@@ -79,6 +79,7 @@ export class NftCardFrontTemplate extends LitElement {
       .asset-metadata {
         font-weight: 400;
         text-align: left;
+        cursor: pointer;
       }
       .asset-metadata-text {
         width: auto;

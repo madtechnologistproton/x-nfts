@@ -6,6 +6,8 @@
 
 Easily embed NFT listings in your website!
 
+### Demo
+Demo : https://madtechnologistproton.github.io/x-nfts/example/
 ### Component inputs
 
 `tokenAddress`\*- The token's contract address.

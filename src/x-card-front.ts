@@ -31,7 +31,6 @@ export class NftCardFrontTemplate extends LitElement {
         overflow: hidden;
       }
       .is-vertical {
-        flex-direction: column;
       }
       .card-front p {
         margin: 0;
@@ -52,17 +51,12 @@ export class NftCardFrontTemplate extends LitElement {
         box-sizing: border-box;
       }
 
-      .is-vertical .asset-image-container {
-        border-bottom: 1px solid #e2e6ef;
-        border-right: none;
-        aspect-ratio: 1 / 1;
-      }
-
       .asset-details-container {
         padding: 20px;
         align-items: center;
         overflow: hidden;
       }
+    
       .asset-detail {
         display: flex;
       }
@@ -108,31 +102,8 @@ export class NftCardFrontTemplate extends LitElement {
         text-align: right;
         padding: 6px 0;
       }
-      .asset-detail-price img {
-        margin: 0 4px;
-      }
-      .asset-detail-price-current img {
-        width: 15px;
-      }
-      .asset-detail-price-previous {
-        font-size: 14px;
-        color: rgb(130, 130, 130);
-        line-height: 10px;
-      }
-      .asset-detail-price-previous img {
-        width: 1ex;
-      }
-      .asset-detail-price .value {
-        margin-left: 5px;
-      }
-      .asset-detail-price .previous-value {
-        font-size: 14px;
-        color: #828282;
-      }
       .asset-action {
-        bottom: 20px;
-        position: absolute;
-        padding-right: 20px;
+        padding-top: 20px;
       }
       .asset-action-buy {
         grid-column-start: 1;
@@ -141,7 +112,7 @@ export class NftCardFrontTemplate extends LitElement {
       .asset-action-buy button {
         width: fit-content;
         background: #3291e9;
-        border-radius: 5px;
+        border-radius: 20px;
         height: 35px;
         color: white;
         font-weight: bold;
@@ -152,12 +123,22 @@ export class NftCardFrontTemplate extends LitElement {
         border-style: none;
         text-transform: uppercase;
       }
+      .is-vertical .asset-action-buy button {
+       font-size: 10px;
+       height: 25px;
+      }
       .asset-action-buy button:hover {
         background: rgb(21, 61, 98);
       }
       .asset-link {
         text-decoration: none;
         color: #222222;
+      }
+      .is-vertical .asset-info {
+        display: none;
+      }
+      .is-vertical .asset-details-container {
+        padding: 10px;
       }
       .card-front-dark {
         background-color: #1f1f1f;
@@ -168,6 +149,15 @@ export class NftCardFrontTemplate extends LitElement {
       }
       .card-front-dark .asset-image-container {
         border-right: 1px solid #606060;
+      }
+      .card-front.is-vertical .asset-image-container{
+        padding: 10px;
+      }
+      .card-front.is-vertical .asset-image-container .asset-image{
+        border-radius: 20px;
+      }
+      .card-front.is-vertical .asset-metadata-text{
+        font-size: 15px;
       }
     `
   }
@@ -181,30 +171,54 @@ export class NftCardFrontTemplate extends LitElement {
     }
 
     const { nftLink, data = {} } = this.asset
+    const slicedData = Object.keys(data)
+      .slice(0, 2)
+      .reduce((result: { [key: string]: string }, key) => {
+        result[key] = data[key]
+
+        return result
+      }, {})
     return html`
-      <div
-        class="card-front  ${classMap({
-          'is-vertical': !this.horizontal,
-          'is-flipped': this.flippedCard,
-          'card-front-dark': this.mode === ThemeMode.Dark,
-        })}"
-      >
-        ${this.getAssetImageTemplate()}
-        <div class="asset-details-container">
-          ${this.getMetadataTemplate(data)}
-          <div class="asset-action">
-            <div class="asset-action-buy">${this.getButtonTemplate()}</div>
-            <div class="asset-info">
-              <p>
-                This content is set by the owner of
-                <a class="asset-info-nft-link" href="${nftLink}" target="_blank"
-                  >this NFT</a
-                >. Whoever owns the NFT can update the sponsor/ad info on the
-                page
-              </p>
+      <div style="height: 100%;">
+        <div
+          class="card-front ${classMap({
+            'is-vertical': !this.horizontal,
+            'is-flipped': this.flippedCard,
+            'card-front-dark': this.mode === ThemeMode.Dark,
+          })}"
+        >
+          ${this.getAssetImageTemplate()}
+          <div class="asset-details-container">
+            ${this.getMetadataTemplate(slicedData)}
+            <div class="asset-action">
+              <div class="asset-action-buy">${this.getButtonTemplate()}</div>
+              <div class="asset-info">
+                <p>
+                  This content is set by the owner of
+                  <a
+                    class="asset-info-nft-link"
+                    href="${nftLink}"
+                    target="_blank"
+                    >this NFT</a
+                  >. Whoever owns the NFT can update the sponsor/ad info on the
+                  page
+                </p>
+              </div>
             </div>
           </div>
         </div>
+        <div class="asset-info-vertical">
+        <p>
+          This content is set by the owner of
+          <a
+            class="asset-info-nft-link"
+            href="${nftLink}"
+            target="_blank"
+            >this NFT</a
+          >. Whoever owns the NFT can update the sponsor/ad info on the
+          page
+        </p>
+      </div>
       </div>
     `
   }
@@ -254,6 +268,7 @@ export class NftCardFrontTemplate extends LitElement {
     if (metadataKey.length > 0) {
       return html`
         <div
+          title="Click to view detail"
           class="asset-metadata"
           @click="${(e: any) => this.eventHandler(e, 'openModal')}"
         >

@@ -6,19 +6,21 @@ import { provider as Web3Provider } from 'web3-core'
 import './loader.ts'
 import './x-card-front.ts'
 import './modal.ts'
+import './x-card-info.ts'
 
 import { AssetNFT, ButtonEvent, Network, ThemeMode } from './types'
 import { getNFTContract, getProvider } from './utils'
+import { classMap } from 'lit-html/directives/class-map'
 
-const HORIZONTAL_MIN_CARD_HEIGHT = '200px'
-const VERT_MIN_CARD_HEIGHT = '300px'
+const HORIZONTAL_MIN_CARD_HEIGHT = '170px'
+const VERT_MIN_CARD_HEIGHT = '100px'
 
-const VERT_CARD_HEIGHT = '520px'
+const VERT_CARD_HEIGHT = '100px'
 const VERT_CARD_WIDTH = '380px'
 
-const VERT_CARD_WIDTH_MOBILE = '80vw'
+const VERT_CARD_WIDTH_MOBILE = '100%'
 
-const HORIZONTAL_CARD_HEIGHT = '200px'
+const HORIZONTAL_CARD_HEIGHT = '170px'
 const HORIZONTAL_CARD_WIDTH = '100%'
 const HORIZONTAL_CARD_MAX_WIDTH = '670px'
 
@@ -43,14 +45,15 @@ export class NftCard extends LitElement {
   @property({ type: String }) public orientationMode?: OrientationMode
   @property({ type: String }) public tokenAddress: string = ''
   @property({ type: String }) public contractAddress: string = ''
-  @property({ type: String }) public baseIncomeStreamAddress: string = '0x3534955239dCebb283E23D8f02fe05B4cd5785e2' // Default : '0x3534955239dCebb283E23D8f02fe05B4cd5785e2'
+  @property({ type: String }) public baseIncomeStreamAddress: string =
+    '0x3534955239dCebb283E23D8f02fe05B4cd5785e2' // Default : '0x3534955239dCebb283E23D8f02fe05B4cd5785e2'
   @property({ type: String }) public tokenId: string = ''
   @property({ type: String }) public width: string = ''
   @property({ type: String }) public height: string = ''
   @property({ type: String }) public minHeight: string = ''
   @property({ type: String }) public maxWidth: string = ''
   @property({ type: String }) public network: Network = Network.Mainnet
-  @property({ type: String }) public infuraId: string= ""
+  @property({ type: String }) public infuraId: string = ''
   @property({ type: String }) public mode: string = ThemeMode.Light
   @property({ type: String }) public referrerAddress: string = ''
 
@@ -79,9 +82,14 @@ export class NftCard extends LitElement {
         font-style: normal;
         font-weight: normal;
         line-height: normal;
-        border-radius: 20px;
         perspective: 1000px;
         margin: auto;
+        border-top:    1px solid  rgb(96, 96, 96);
+        border-right:  1px solid rgb(96, 96, 96);
+        border-left: 1px solid rgb(96, 96, 96);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        font-family: inherit;
       }
       .card-inner {
         position: relative;
@@ -89,9 +97,17 @@ export class NftCard extends LitElement {
         height: 100%;
         transition: transform 0.6s;
         transform-style: preserve-3d;
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
         overflow: hidden;
-        border-radius: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+      .card-info {
+        margin: auto;
+        border-bottom:    1px solid  rgb(96, 96, 96);
+        border-right:  1px solid rgb(96, 96, 96);
+        border-left: 1px solid rgb(96, 96, 96);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
       }
       .flipped-card .card-inner {
         transform: rotateY(180deg);
@@ -115,9 +131,20 @@ export class NftCard extends LitElement {
       .card-dark .error {
         color: white;
       }
+      .card-info:not(.is-vertical) {
+        display: none;
+      }
+      .card:not(.is-vertical)  {
+        border-bottom: 1px solid  rgb(96, 96, 96);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+      .card:not(.is-vertical) .card-inner {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
     `
   }
-
 
   public async connectedCallback() {
     super.connectedCallback()
@@ -160,7 +187,7 @@ export class NftCard extends LitElement {
       : VERT_MIN_CARD_HEIGHT
     this.maxWidth = this.horizontal ? HORIZONTAL_CARD_MAX_WIDTH : ''
 
-    this.provider = getProvider(this.network,this.infuraId)
+    this.provider = getProvider(this.network, this.infuraId)
 
     try {
       this.asset = await getNFTContract(
@@ -221,7 +248,9 @@ export class NftCard extends LitElement {
         @button-event="${this.eventHandler}"
       ></modal-dialog>
       <div
-        class="card card-${this.mode} ${this.flippedCard ? 'flipped-card' : ''}"
+        class="card card-${this.mode} ${this.flippedCard
+          ? 'flipped-card'
+          : ''} ${!this.horizontal ? 'is-vertical' : ''} "
         style=${styleMap({
           width: this.width,
           height: this.height,
@@ -236,6 +265,18 @@ export class NftCard extends LitElement {
             ? this.renderErrorTemplate()
             : this.renderInnerCardTemplate()}
         </div>
+      </div>
+      <div
+        class="card-info 
+        ${classMap({
+          'is-vertical': !this.horizontal,
+        })} "
+        style=${styleMap({
+          width: this.width,
+          maxWidth: this.maxWidth,
+        })}
+      >
+        <x-card-info .mode=${this.mode} .nftLink="{ss}">dddddd</x-card-info>
       </div>
     `
   }

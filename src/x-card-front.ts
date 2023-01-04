@@ -254,7 +254,7 @@ export class NftCardFrontTemplate extends LitElement {
   }
 
   private getMetadataTemplate(displaytext: string) {
-    if (displaytext.length > 0) {
+    if (displaytext) {
       return html`
         <div
           title="Click to view detail"

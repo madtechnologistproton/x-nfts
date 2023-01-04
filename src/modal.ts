@@ -76,7 +76,7 @@ export class Modal extends LitElement {
       return undefined
     }
 
-    const { data = {} } = this.asset
+    const {  displaytext } = this.asset
     return html`
       <div
         class="${classMap({
@@ -89,7 +89,9 @@ export class Modal extends LitElement {
         <div class="asset-modal-dialog">
           <h1 class="asset-modal-title">Owner metadata</h1>
           <div class="asset-modal-content" class="content">
-            ${this.getMetadataTemplate(data)}
+          <div class="asset-modal-metadata">
+          <p class="asset-modal-metadata-text">${displaytext}</p>
+        </div>
           </div>
           <button
             class="asset-modal-close-button"
@@ -98,26 +100,6 @@ export class Modal extends LitElement {
             Close
           </button>
         </div>
-      </div>
-    `
-  }
-
-  private getMetadataTemplate(data: { [key: string]: string }) {
-    const metadataKey = Object.keys(data)
-    if (metadataKey.length > 0) {
-      return html`
-        <div class="asset-modal-metadata">
-          ${metadataKey.map((key) => {
-            return html`<p key="${key}" class="asset-modal-metadata-text">
-              ${key}: ${data[key]}
-            </p>`
-          })}
-        </div>
-      `
-    }
-    return html`
-      <div>
-        <div class="asset-modal-metadata">No metadata</div>
       </div>
     `
   }

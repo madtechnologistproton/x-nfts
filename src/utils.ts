@@ -84,6 +84,7 @@ export const getNFTContract = async (
           sendTipLink,
           owner,
           imageUrl: responseMetadataJson?.image,
+          displaytext: responseMetadataJson?.displaytext,
           data: {
             ...newResponseMetadata,
           }

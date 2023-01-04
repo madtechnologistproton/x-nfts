@@ -77,7 +77,7 @@ export class NftCard extends LitElement {
       }
       .card {
         background-color: white;
-        font-family: 'Roboto', sans-serif;
+        font-family: sans-serif;
         -webkit-font-smoothing: antialiased;
         font-style: normal;
         font-weight: normal;
@@ -89,7 +89,6 @@ export class NftCard extends LitElement {
         border-left: 1px solid rgb(96, 96, 96);
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-        font-family: inherit;
       }
       .card-inner {
         position: relative;

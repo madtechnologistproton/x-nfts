@@ -32,5 +32,6 @@ export interface AssetNFT {
   sendTipLink: string
   owner: string
   imageUrl?: string
+  displaytext?: string
   data?: { [key: string]: string; }
 }

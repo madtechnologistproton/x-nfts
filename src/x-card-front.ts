@@ -56,7 +56,7 @@ export class NftCardFrontTemplate extends LitElement {
         align-items: center;
         overflow: hidden;
       }
-    
+
       .asset-detail {
         display: flex;
       }
@@ -124,8 +124,8 @@ export class NftCardFrontTemplate extends LitElement {
         text-transform: uppercase;
       }
       .is-vertical .asset-action-buy button {
-       font-size: 10px;
-       height: 25px;
+        font-size: 10px;
+        height: 25px;
       }
       .asset-action-buy button:hover {
         background: rgb(21, 61, 98);
@@ -150,13 +150,13 @@ export class NftCardFrontTemplate extends LitElement {
       .card-front-dark .asset-image-container {
         border-right: 1px solid #606060;
       }
-      .card-front.is-vertical .asset-image-container{
+      .card-front.is-vertical .asset-image-container {
         padding: 10px;
       }
-      .card-front.is-vertical .asset-image-container .asset-image{
+      .card-front.is-vertical .asset-image-container .asset-image {
         border-radius: 20px;
       }
-      .card-front.is-vertical .asset-metadata-text{
+      .card-front.is-vertical .asset-metadata-text {
         font-size: 15px;
       }
     `
@@ -170,14 +170,8 @@ export class NftCardFrontTemplate extends LitElement {
       return undefined // If there is no asset then we can't render
     }
 
-    const { nftLink, data = {} } = this.asset
-    const slicedData = Object.keys(data)
-      .slice(0, 2)
-      .reduce((result: { [key: string]: string }, key) => {
-        result[key] = data[key]
-
-        return result
-      }, {})
+    const { nftLink, displaytext } = this.asset
+    
     return html`
       <div style="height: 100%;">
         <div
@@ -189,7 +183,7 @@ export class NftCardFrontTemplate extends LitElement {
         >
           ${this.getAssetImageTemplate()}
           <div class="asset-details-container">
-            ${this.getMetadataTemplate(slicedData)}
+            ${this.getMetadataTemplate(displaytext as string)}
             <div class="asset-action">
               <div class="asset-action-buy">${this.getButtonTemplate()}</div>
               <div class="asset-info">
@@ -208,17 +202,13 @@ export class NftCardFrontTemplate extends LitElement {
           </div>
         </div>
         <div class="asset-info-vertical">
-        <p>
-          This content is set by the owner of
-          <a
-            class="asset-info-nft-link"
-            href="${nftLink}"
-            target="_blank"
-            >this NFT</a
-          >. Whoever owns the NFT can update the sponsor/ad info on the
-          page
-        </p>
-      </div>
+          <p>
+            This content is set by the owner of
+            <a class="asset-info-nft-link" href="${nftLink}" target="_blank"
+              >this NFT</a
+            >. Whoever owns the NFT can update the sponsor/ad info on the page
+          </p>
+        </div>
       </div>
     `
   }
@@ -263,23 +253,18 @@ export class NftCardFrontTemplate extends LitElement {
     `
   }
 
-  private getMetadataTemplate(data: { [key: string]: string }) {
-    const metadataKey = Object.keys(data)
-    if (metadataKey.length > 0) {
+  private getMetadataTemplate(displaytext: string) {
+    if (displaytext.length > 0) {
       return html`
         <div
           title="Click to view detail"
           class="asset-metadata"
           @click="${(e: any) => this.eventHandler(e, 'openModal')}"
         >
-          ${metadataKey.map((key) => {
-            return html`<p key="${key}" class="asset-metadata-text">
-              ${key}: ${data[key]}
-            </p>`
-          })}
+          <p class="asset-metadata-text">${displaytext}</p>
         </div>
       `
     }
-    return html` <div><p class="asset-metadata-text">No metadata</p></div> `
+    return html` <div><p class="asset-metadata-text">No display text</p></div> `
   }
 }

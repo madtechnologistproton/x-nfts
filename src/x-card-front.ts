@@ -37,10 +37,10 @@ export class NftCardFrontTemplate extends LitElement {
       }
 
       .asset-image-container {
-        border-right: 1px solid #e2e6ef;
         background-size: cover;
         box-sizing: border-box;
         aspect-ratio: 1 / 1;
+        padding: 20px;
       }
 
       .asset-image {
@@ -49,12 +49,15 @@ export class NftCardFrontTemplate extends LitElement {
         background-repeat: no-repeat;
         height: 100%;
         box-sizing: border-box;
+        border-radius: 20px;
       }
 
       .asset-details-container {
-        padding: 20px;
-        align-items: center;
+        padding: 20px 20px 20px 0px;
         overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
       }
 
       .asset-detail {
@@ -83,7 +86,7 @@ export class NftCardFrontTemplate extends LitElement {
       }
       .asset-info {
         grid-column: 1 / 3;
-        font-size: 12px;
+        font-size: 10px;
         text-align: left;
         margin-top: 10px;
       }
@@ -115,13 +118,12 @@ export class NftCardFrontTemplate extends LitElement {
         border-radius: 20px;
         height: 35px;
         color: white;
-        font-weight: bold;
         letter-spacing: 0.5px;
         cursor: pointer;
         transition: 200ms;
         outline: none;
         border-style: none;
-        text-transform: uppercase;
+        padding: 0px 15px;
       }
       .is-vertical .asset-action-buy button {
         font-size: 10px;
@@ -147,9 +149,6 @@ export class NftCardFrontTemplate extends LitElement {
       .card-front-dark .asset-info {
         color: white;
       }
-      .card-front-dark .asset-image-container {
-        border-right: 1px solid #606060;
-      }
       .card-front.is-vertical .asset-image-container {
         padding: 10px;
       }
@@ -171,7 +170,7 @@ export class NftCardFrontTemplate extends LitElement {
     }
 
     const { nftLink, displaytext } = this.asset
-    
+
     return html`
       <div style="height: 100%;">
         <div

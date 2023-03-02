@@ -22,7 +22,7 @@ export class NftCardFrontTemplate extends LitElement {
         position: absolute;
         backface-visibility: hidden;
         background: #ffffff;
-        border-radius: 5px;
+        border-radius: 38px;
         display: flex;
         position: relative;
         width: 100%;
@@ -83,12 +83,22 @@ export class NftCardFrontTemplate extends LitElement {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19.0198px;
+        line-height: 29px;
       }
       .asset-info {
         grid-column: 1 / 3;
-        font-size: 10px;
+        font-size: 11px;
         text-align: left;
         margin-top: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11.4119px;
+        line-height: 17px;
       }
       .asset-info .asset-info-nft-link {
         color: #3291e9;
@@ -114,7 +124,7 @@ export class NftCardFrontTemplate extends LitElement {
       }
       .asset-action-buy button {
         width: fit-content;
-        background: #3291e9;
+        background: #4088E0;
         border-radius: 20px;
         height: 35px;
         color: white;
@@ -124,6 +134,11 @@ export class NftCardFrontTemplate extends LitElement {
         outline: none;
         border-style: none;
         padding: 0px 15px;
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 19.0198px;
+        line-height: 29px;
       }
       .is-vertical .asset-action-buy button {
         font-size: 10px;

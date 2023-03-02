@@ -84,11 +84,11 @@ export class NftCard extends LitElement {
         line-height: normal;
         perspective: 1000px;
         margin: auto;
-        border-top:    1px solid  rgb(96, 96, 96);
-        border-right:  1px solid rgb(96, 96, 96);
-        border-left: 1px solid rgb(96, 96, 96);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top:    3px solid  #BABABA;
+        border-right:  3px solid #BABABA;
+        border-left: 3px solid #BABABA;
+        border-top-left-radius: 38px;
+        border-top-right-radius: 38px;
       }
       .card-inner {
         position: relative;
@@ -97,8 +97,8 @@ export class NftCard extends LitElement {
         transition: transform 0.6s;
         transform-style: preserve-3d;
         overflow: hidden;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top-left-radius: 36px;
+        border-top-right-radius: 36px;
       }
       .card-info {
         margin: auto;
@@ -134,13 +134,13 @@ export class NftCard extends LitElement {
         display: none;
       }
       .card:not(.is-vertical)  {
-        border-bottom: 1px solid  rgb(96, 96, 96);
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-bottom: 3px solid  #BABABA;
+        border-bottom-left-radius: 38px;
+        border-bottom-right-radius: 38px;
       }
       .card:not(.is-vertical) .card-inner {
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
       }
     `
   }
@@ -238,7 +238,7 @@ export class NftCard extends LitElement {
   public render() {
     return html`
       <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
       </style>
       <modal-dialog
         .mode=${this.mode}
